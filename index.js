@@ -1,6 +1,14 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { getAll, write, update, remove, getGrade } from './operations.js';
+import {
+  getAll,
+  write,
+  update,
+  remove,
+  getGrade,
+  getTotalValue,
+  getAverageValue,
+} from './operations.js';
 
 const app = express();
 const router = express.Router();
@@ -45,6 +53,22 @@ router.get('/:id', async (req, res) => {
   } else {
     res.sendStatus(404);
   }
+});
+
+router.get('/:student/:subject', async (req, res) => {
+  let student = req.params.student;
+  let subject = req.params.subject;
+  let total = await getTotalValue(student, subject);
+
+  res.send(total);
+});
+
+router.get('/:student/:subject', async (req, res) => {
+  let student = req.params.student;
+  let subject = req.params.subject;
+  let average = await getAverageValue(student, subject);
+
+  res.send(average);
 });
 
 app.use(router);

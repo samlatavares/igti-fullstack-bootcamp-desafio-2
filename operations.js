@@ -91,3 +91,40 @@ export async function getGrade(id) {
 
   return existingGrade;
 }
+
+export async function getTotalValue(student, subject) {
+  let grades = await getAll();
+  let soma = 0;
+
+  grades.grades.forEach((grade) => {
+    if (grade.subject === subject && grade.student === student) {
+      soma += grade.value;
+    }
+  });
+
+  return { total: soma };
+}
+
+export async function getAverageValue(student, subject) {
+  let grades = await getAll();
+  let sum = 0;
+  let count = 0;
+
+  grades.grades.forEach((grade) => {
+    if (grade.subject === subject && grade.student === student) {
+      sum += grade.value;
+      count++;
+    }
+  });
+
+  let average = 0;
+
+  if (count > 0) {
+    average = sum / count;
+  }
+  return { average: average };
+}
+
+export async function getTopThree(subject, type) {
+  let grades = await getAll();
+}
