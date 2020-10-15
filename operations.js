@@ -127,4 +127,17 @@ export async function getAverageValue(student, subject) {
 
 export async function getTopThree(subject, type) {
   let grades = await getAll();
+  let topThree = [];
+
+  let filteredGrade = grades.grades.filter((grade) => {
+    return grade.subject === subject && grade.type === type;
+  });
+
+  filteredGrade.sort((a, b) => {
+    return b.value - a.value;
+  });
+
+  topThree = filteredGrade.slice(0, 3);
+
+  return topThree;
 }

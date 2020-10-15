@@ -8,6 +8,7 @@ import {
   getGrade,
   getTotalValue,
   getAverageValue,
+  getTopThree,
 } from './operations.js';
 
 const app = express();
@@ -55,7 +56,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.get('/:student/:subject', async (req, res) => {
+router.get('/total/:student/:subject', async (req, res) => {
   let student = req.params.student;
   let subject = req.params.subject;
   let total = await getTotalValue(student, subject);
@@ -63,12 +64,20 @@ router.get('/:student/:subject', async (req, res) => {
   res.send(total);
 });
 
-router.get('/:student/:subject', async (req, res) => {
+router.get('/average/:student/:subject', async (req, res) => {
   let student = req.params.student;
   let subject = req.params.subject;
   let average = await getAverageValue(student, subject);
 
   res.send(average);
+});
+
+router.get('/topThree/:subject/:type', async (req, res) => {
+  let subject = req.params.subject;
+  let type = req.params.type;
+  let topThree = await getTopThree(subject, type);
+
+  res.send(topThree);
 });
 
 app.use(router);
