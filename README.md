@@ -2,7 +2,7 @@
 
 ## What is this project?
 
-Challenge made during IGTI's Fullstack bootcamp. This project is a Node API called grades-control-api that that manipulates the grades.json file.
+Challenge made during IGTI's Fullstack bootcamp. This project is a Node API called grades-control-api that manipulates the grades.json file.
 
 ## How to run the project?
 
