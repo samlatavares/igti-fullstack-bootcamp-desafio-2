@@ -105,13 +105,13 @@ export async function getTotalValue(student, subject) {
   return { total: soma };
 }
 
-export async function getAverageValue(student, subject) {
+export async function getAverageValue(subject, type) {
   let grades = await getAll();
   let sum = 0;
   let count = 0;
 
   grades.grades.forEach((grade) => {
-    if (grade.subject === subject && grade.student === student) {
+    if (grade.subject === subject && grade.type === type) {
       sum += grade.value;
       count++;
     }

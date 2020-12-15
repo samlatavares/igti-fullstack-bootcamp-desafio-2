@@ -64,10 +64,10 @@ router.get('/total/:student/:subject', async (req, res) => {
   res.send(total);
 });
 
-router.get('/average/:student/:subject', async (req, res) => {
-  let student = req.params.student;
+router.get('/average/:subject/:type', async (req, res) => {
   let subject = req.params.subject;
-  let average = await getAverageValue(student, subject);
+  let type = req.params.type;
+  let average = await getAverageValue(subject, type);
 
   res.send(average);
 });
